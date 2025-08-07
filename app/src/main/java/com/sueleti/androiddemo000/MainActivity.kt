@@ -1,11 +1,10 @@
 package com.sueleti.androiddemo000
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,7 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.sueleti.androiddemo000.ui.theme.AndroidDemo000Theme
 import kotlinx.coroutines.launch
@@ -42,30 +40,38 @@ fun MainScreen(name: String) {
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
-        snackbarHost = {
+        // Quitamos el parámetro snackbarHost del Scaffold
+        modifier = Modifier.fillMaxSize()
+    ) { padding ->
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .padding(padding)) {
+
+            // Posicionamos manualmente el SnackbarHost arriba
             SnackbarHost(
                 hostState = snackbarHostState,
-                modifier = Modifier.padding(top = 16.dp)
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(top = 48.dp)
             )
-        }
-    ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(text = "Hello $name!")
-            Button(onClick = {
-                coroutineScope.launch {
-                    snackbarHostState.showSnackbar("¡Hola, $name! Este es un mensaje arriba.")
+
+            // Contenido principal al centro
+            Column(
+                modifier = Modifier.align(Alignment.Center),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(text = "Hello $name!")
+                Button(onClick = {
+                    coroutineScope.launch {
+                        snackbarHostState.showSnackbar("¡Hola, $name! Este es un mensaje arriba.")
+                    }
+                }) {
+                    Text("Mostrar mensaje")
                 }
-            }) {
-                Text("Mostrar mensaje")
             }
         }
     }
 }
+
 
 
