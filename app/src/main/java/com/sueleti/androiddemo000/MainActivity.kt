@@ -30,49 +30,14 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AndroidDemo000Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Hugo",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                    TopSnackbarDemo()
-                }
+                MainScreen(name = "Hugo")
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-    Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Hello $name!"
-        )
-        Button(onClick = {
-            val toast = Toast.makeText(
-                context,
-                "¡Hola, $name! Este es un Toast.",
-                Toast.LENGTH_SHORT
-            )
-            toast.setGravity(
-                android.view.Gravity.TOP or android.view.Gravity.CENTER_HORIZONTAL,
-                0,
-                0 // Cambia el offset Y a 0 para que esté pegado arriba
-            )
-            toast.show()
-        }) {
-            Text("Mostrar Toast")
-        }
-    }
-}
-
-@Composable
-fun TopSnackbarDemo() {
+fun MainScreen(name: String) {
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
@@ -91,14 +56,16 @@ fun TopSnackbarDemo() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            Text(text = "Hello $name!")
             Button(onClick = {
                 coroutineScope.launch {
-                    snackbarHostState.showSnackbar("Hola, desde arriba 👋")
+                    snackbarHostState.showSnackbar("¡Hola, $name! Este es un mensaje arriba.")
                 }
             }) {
-                Text("Hi")
+                Text("Mostrar mensaje")
             }
         }
     }
 }
+
 
