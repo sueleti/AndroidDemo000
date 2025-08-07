@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 
 /** setContent is a function that sets the content view of the activity to a composable function.
  * In this case, it sets the content to a Text composable that displays "Hello world!".
@@ -18,9 +19,19 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Text("Hello world!")
+            MessaggeCard("Android")
         }
     }
 }
+
+/** A fin de que una función admita composición, debes agregar la anotación @Composable.
+ * Para probarlo, define una función MessageCard a la que se le da un nombre que usa para configurar el elemento de texto.
+ */
+@Composable
+fun MessaggeCard(name: String) {
+    Text(text = "Hello $name!")
+}
+
+
 
 
