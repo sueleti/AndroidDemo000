@@ -1,44 +1,70 @@
-# Checklist Interactivo: Aprendizaje de Desarrollo Android con Android Studio
+# Índice del Contenido
 
----
-
-### 🔵 Fase 1: Fundamentos de Android
-
-- [X] Hola Mundo y estructura básica (botón + Toast)
-- [ ] Diseño responsive con ConstraintLayout y LinearLayout
-- [ ] Navegación entre pantallas con Intents
-- [ ] Formularios con validación (EditText, Button)
-- [ ] Guardado de datos con SharedPreferences
-
----
-
-### 🟡 Fase 2: Funcionalidades intermedias
-
-- [ ] Lista con RecyclerView y Adapter
-- [ ] Consumir una API REST (GET) con Retrofit o Volley
-- [ ] Guardado local con Room (SQLite)
-- [ ] Notificaciones locales
-- [ ] Uso de la cámara y permisos
-
----
-
-### 🔹 Fase 3: Apps más completas y últiles
-
-- [ ] ToDo List con Room, RecyclerView y notificaciones
-- [ ] App de notas con texto e imágenes
-- [ ] API con autenticación (ej: Firebase Auth)
-- [ ] Soporte para modo oscuro/claro
-- [ ] Integración de Firebase Analytics o Crashlytics
-
----
-
-### 🔴 Fase 4: Preparación para Play Store
-
-- [ ] Diseñar y aplicar icono profesional
-- [ ] Internacionalización: soporte multi-idioma
-- [ ] Splash screen con logo
-- [ ] Login con Google (Firebase)
-- [ ] Firmar y exportar APK/AAB para Play Store
-
----
+1. [Start Here](#1-start-here)
+2. [Setting up an Android Studio Development Environment](#2-setting-up-an-android-studio-development-environment)
+3. [A Compose Project Overview](#3-a-compose-project-overview)
+4. [An Example Compose Project](#4-an-example-compose-project)
+5. [Creating an Android Virtual Device (AVD) in Android Studio](#5-creating-an-android-virtual-device-avd-in-android-studio)
+6. [Using and Configuring the Android Studio AVD Emulator](#6-using-and-configuring-the-android-studio-avd-emulator)
+7. [A Tour of the Android Studio User Interface](#7-a-tour-of-the-android-studio-user-interface)
+8. [Testing Android Studio Apps on a Physical Android Device](#8-testing-android-studio-apps-on-a-physical-android-device)
+9. [The Basics of the Android Studio Code Editor](#9-the-basics-of-the-android-studio-code-editor)
+10. [An Overview of the Android Architecture](#10-an-overview-of-the-android-architecture)
+11. [An Introduction to Kotlin](#11-an-introduction-to-kotlin)
+12. [Kotlin Data Types, Variables and Nullability](#12-kotlin-data-types-variables-and-nullability)
+13. [Kotlin Operators and Expressions](#13-kotlin-operators-and-expressions)
+14. [Kotlin Control Flow](#14-kotlin-control-flow)
+15. [An Overview of Kotlin Functions and Lambdas](#15-an-overview-of-kotlin-functions-and-lambdas)
+16. [The Basics of Object-Oriented Programming in Kotlin](#16-the-basics-of-object-oriented-programming-in-kotlin)
+17. [An Introduction to Kotlin Inheritance and Subclassing](#17-an-introduction-to-kotlin-inheritance-and-subclassing)
+18. [Introducing Gemini in Android Studio](#18-introducing-gemini-in-android-studio)
+19. [An Overview of Compose](#19-an-overview-of-compose)
+20. [A Guide to Gradle Version Catalogs](#20-a-guide-to-gradle-version-catalogs)
+21. [Composable Functions Overview](#21-composable-functions-overview)
+22. [An Overview of Compose State and Recomposition](#22-an-overview-of-compose-state-and-recomposition)
+23. [An Introduction to Composition Local](#23-an-introduction-to-composition-local)
+24. [An Overview of Compose Slot APIs](#24-an-overview-of-compose-slot-apis)
+25. [A Compose Slot API Tutorial](#25-a-compose-slot-api-tutorial)
+26. [Using Modifiers in Compose](#26-using-modifiers-in-compose)
+27. [Annotated Strings and Brush Styles](#27-annotated-strings-and-brush-styles)
+28. [Composing Layouts with Row and Column](#28-composing-layouts-with-row-and-column)
+29. [Box Layouts in Compose](#29-box-layouts-in-compose)
+30. [An Introduction to FlowRow and FlowColumn](#30-an-introduction-to-flowrow-and-flowcolumn)
+31. [A FlowRow and FlowColumn Tutorial](#31-a-flowrow-and-flowcolumn-tutorial)
+32. [Custom Layout Modifiers](#32-custom-layout-modifiers)
+33. [Building Custom Layouts](#33-building-custom-layouts)
+34. [A Guide to ConstraintLayout in Compose](#34-a-guide-to-constraintlayout-in-compose)
+35. [Working with ConstraintLayout in Compose](#35-working-with-constraintlayout-in-compose)
+36. [Working with IntrinsicSize in Compose](#36-working-with-intrinsicsize-in-compose)
+37. [Coroutines and LaunchedEffects in Jetpack Compose](#37-coroutines-and-launchedeffects-in-jetpack-compose)
+38. [An Overview of Lists and Grids in Compose](#38-an-overview-of-lists-and-grids-in-compose)
+39. [A Compose Row and Column List Tutorial](#39-a-compose-row-and-column-list-tutorial)
+40. [A Compose Lazy List Tutorial](#40-a-compose-lazy-list-tutorial)
+41. [Lazy List Sticky Headers and Scroll Detection](#41-lazy-list-sticky-headers-and-scroll-detection)
+42. [A Compose Lazy Staggered Grid Tutorial](#42-a-compose-lazy-staggered-grid-tutorial)
+43. [VerticalPager and HorizontalPager in Compose](#43-verticalpager-and-horizontalpager-in-compose)
+44. [Compose Visibility Animation](#44-compose-visibility-animation)
+45. [Compose State-Driven Animation](#45-compose-state-driven-animation)
+46. [Canvas Graphics Drawing in Compose](#46-canvas-graphics-drawing-in-compose)
+47. [Working with ViewModels in Compose](#47-working-with-viewmodels-in-compose)
+48. [A Compose ViewModel Tutorial](#48-a-compose-viewmodel-tutorial)
+49. [An Overview of Android SQLite Databases](#49-an-overview-of-android-sqlite-databases)
+50. [Room Databases and Compose](#50-room-databases-and-compose)
+51. [A Compose Room Database and Repository Tutorial](#51-a-compose-room-database-and-repository-tutorial)
+52. [An Overview of Navigation in Compose](#52-an-overview-of-navigation-in-compose)
+53. [A Compose Navigation Tutorial](#53-a-compose-navigation-tutorial)
+54. [A Compose Navigation Bar Tutorial](#54-a-compose-navigation-bar-tutorial)
+55. [Detecting Gestures in Compose](#55-detecting-gestures-in-compose)
+56. [An Introduction to Kotlin Flow](#56-an-introduction-to-kotlin-flow)
+57. [A Jetpack Compose SharedFlow Tutorial](#57-a-jetpack-compose-sharedflow-tutorial)
+58. [Introducing Glance Widgets](#58-introducing-glance-widgets)
+59. [A Glance Widget Tutorial](#59-a-glance-widget-tutorial)
+60. [An Android Biometric Authentication Tutorial](#60-an-android-biometric-authentication-tutorial)
+61. [Working with the Google Maps Android API in Android Studio](#61-working-with-the-google-maps-android-api-in-android-studio)
+62. [Creating, Testing, and Uploading an Android App Bundle](#62-creating-testing-and-uploading-an-android-app-bundle)
+63. [An Overview of Android In-App Billing](#63-an-overview-of-android-in-app-billing)
+64. [An Android In-App Purchasing Tutorial](#64-an-android-in-app-purchasing-tutorial)
+65. [Working with Compose Theming](#65-working-with-compose-theming)
+66. [A Material Design 3 Theming Tutorial](#66-a-material-design-3-theming-tutorial)
+67. [An Overview of Gradle in Android Studio](#67-an-overview-of-gradle-in-android-studio)
 
