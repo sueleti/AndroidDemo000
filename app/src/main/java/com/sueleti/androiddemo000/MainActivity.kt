@@ -3,83 +3,88 @@ package com.sueleti.androiddemo000
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sueleti.androiddemo000.ui.theme.AndroidDemo000Theme
 
-/** setContent is a function that sets the content view of the activity to a composable function.
- * In this case, it sets the content to a Text composable that displays "Hello world!".
- * The MainActivity class extends ComponentActivity, which is a base class for activities that use Jetpack Compose.
- * The onCreate method is overridden to set the content when the activity is created.
- * The Text composable is part of the Material3 library, which provides Material Design components for Compose.
- * The Text composable is used to display text on the screen, and it takes a string as a parameter.
- * In this case, the string is "Hello world!", which will be displayed when the app is run.
- * This is a simple example of how to use Jetpack Compose to create a basic Android app with a single text view.
+/**
+ * MainActivity is the entry point of the Android application.
+ * It sets the content view to the DemoScreen composable function,
+ * which displays a text field and a slider.
+ * The text field allows the user to input a number,
+ * and the slider reflects that number as a float value.
  */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AndroidDemo000Theme {
-                Surface(modifier = Modifier .fillMaxSize()) {
-                    MessaggeCard(Message("Android", "Jetpack Compose"))
-                }
+                DemoScreen()
             }
-
         }
     }
 }
-
-data class Message(val author: String, val body: String)
-
-/** A fin de que una función admita composición, debes agregar la anotación @Composable.
- * Para probarlo, define una función MessageCard a la que se le da un nombre que usa para configurar el elemento de texto.
- */
+@Preview(showSystemUi = true)
 @Composable
-fun MessaggeCard(msg: Message) {
-    Row (modifier = Modifier.padding(all = 10.dp)){
-        Image(
-            painter = painterResource(R.drawable.profile_picture),
-            contentDescription = "Contact profile picture",
-            modifier = Modifier
-                .size(40.dp)
-                .clip(CircleShape)
-                .border(1.5.dp, MaterialTheme.colorScheme.primary, CircleShape)
-        )
-        Spacer(modifier = Modifier.width(10.dp))
-        Column {
-            Text(text = msg.author,
-                 color = MaterialTheme.colorScheme.secondary,
-                    style = MaterialTheme.typography.titleSmall
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = msg.body,
-                modifier = Modifier.padding(all = 4.dp),
-                style = MaterialTheme.typography.bodyMedium
-            )
-        }
+fun PreviewDemoScreen() {
+    AndroidDemo000Theme {
+        DemoScreen()
     }
-
 }
+@Composable
+fun DemoScreen(modifier: Modifier = Modifier) {
+    var text by remember { mutableStateOf("50") }
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Texto(text = text, actualizaTexto = { text = it })
+        Spacer(modifier = Modifier.height(150.dp))
+        Deslizador(
+            valor = text.toIntOrNull()?.toFloat() ?: 20f
+        )
+    }
+}
+@Composable
+fun Texto(text: String, actualizaTexto: (String) -> Unit
+){
+    TextField(
+        value = text,
+        onValueChange = actualizaTexto,
+        label = { Text("Enter text") },
+        modifier = Modifier.padding(16.dp)
+    )
+}
+@Composable
+fun Deslizador(
+    valor: Float
+) {
+    Slider(
+        modifier = Modifier.padding(10.dp),
+        valueRange = 0f..100f,
+        value = valor,
+        onValueChange = {}
+    )
+}
+
+
 
 
 
